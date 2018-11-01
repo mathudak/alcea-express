@@ -11,7 +11,7 @@ let db = mongoose.connection;
 // console.log('DB:', db);
 
 // Default Express setup with routing
-// const apiRoutes = require('./api-routes');
+const apiRoutes = require('./api-routes');
 
 let app = express();
 app.use(bodyParser.urlencoded({
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// app.use('/api', apiRoutes);
+app.use('/api', apiRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`App is running on port ${process.env.PORT}`);
