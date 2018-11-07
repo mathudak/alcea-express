@@ -7,18 +7,18 @@ exports.index = (req, res) => {
       res.status(400).json({
         message: 'Unable to get orders',
         error: err        
-      })
+      });
     } else {
       res.status(200).json({
         message: 'Orders retreived successfully',
         data: orders
-      })
+      });
     }
-  })
+  });
 };
 
 exports.new = (req, res) => {
-  console.log('Oder "new" request:', req.body);
+  console.log('Order "new" request:', req.body);
   let order = new Order({
     ...req.body
   });
@@ -45,7 +45,7 @@ exports.update = (req, res) => {
     console.log(err, order);
     if (err) {
       res.status(400).json({
-        message: `Order with ID: ${req.params.order_id} does not exist`,
+        message: `Order with ID: ${req.query.order_id} does not exist`,
         error: err        
       });
     } else {
