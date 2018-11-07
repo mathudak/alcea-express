@@ -3,6 +3,7 @@ let router = require('express').Router();
 let orderController = require('./controllers/order.controller');
 let articlesController = require('./controllers/articles.controller');
 let shmuController = require('./controllers/shmu.controller');
+let hydroController = require('./controllers/hydro.controller');
 
 router.get('/', (req, res) => {
   console.log('Req', req);
@@ -24,6 +25,13 @@ router.route('/articles')
 
 
 router.route('/hydro')
+  .get(hydroController.index)
+  .post(hydroController.new)
+  .patch(hydroController.update)
+  .put(hydroController.update)
+  .delete(hydroController.delete);
+
+router.route('/shmu')
   .get(shmuController.index);
 
 module.exports = router;
