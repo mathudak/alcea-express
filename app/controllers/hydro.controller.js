@@ -37,34 +37,21 @@ exports.new = (req, res) => {
   });
 };
 
-exports.update = (req, res) => {
-  Hydro.findById(req.query.hydro_id, (err, hydro) => {
+exports.update = (req, res) => {  
+  Hydro.findByIdAndUpdate(req.query.hydro_id, { $set: { ...req.body }}, (err) => {
     if (err) {
       res.status(400).json({
         message: `Hydro with ID: ${req.query.hydro_id} does not exist`,
         error: err        
       });
     } else {
-      hydro.set({
-        ...hydro,
-        ...req.body
+      res.status(200).json({
+        message: 'Upo-dato successfullo amdino-san'
       });
-      hydro.save((err) => {
-        if (err) {
-          res.status(400).json({
-            message: `Failed to update hydro with ID: ${req.query.hydro_id}`,
-            error: err
-          });
-        } else {
-          res.status(200).json({
-            message: 'Hydro updated',
-            data: hydro
-          });
-        }
-      })
     }
   });
-};
+}
+
 
 exports.delete = (req, res) => {
   Hydro.deleteOne({ _id: req.query.hydro_id}, (err) => {
