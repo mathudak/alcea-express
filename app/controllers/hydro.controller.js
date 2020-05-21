@@ -46,7 +46,7 @@ exports.update = (req, res) => {
       });
     } else {
       res.status(200).json({
-        message: 'Upo-dato successfullo amdino-san'
+        message: 'Upo-dato successfullo admino-san'
       });
     }
   });
